@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Grocify Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                    <span class="nav-item">Grocify</span>
+                </a></li>
+                <li>
+                    <form action="/search" method="get" class="search-form">
+                        <input type="text" name="query" placeholder="Search products or categories">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+                
+                <li><a href="{{ url_for('user_dashboard') }}">
+                    <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>    
+                </a></li>
+                <li><a  href="{{ url_for('view_cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                <span class="nav-item">Cart</span>   
+                </a></li>
+                <li><a href="">
+                    <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>   
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-categories">
+                {% for category in categories %}
+                <div class="card">
+                    <a href="{{ url_for('category_products', category_id=category.Category_ID) }}">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>{{ category.Cat_name }}</h3>
+                        <p>Explore our selection of {{ category.Cat_name }}</p>
+                        <button>Explore</button>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>

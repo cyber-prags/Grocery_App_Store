@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ category_name }} - Grocify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+        .custom-card {
+            width: 200px;
+            text-align: center;
+            border: 3px solid #007bff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            margin-right: 20px;
+        }
+    
+        .custom-card-header {
+            background-color: #e6f7ff; 
+            border-bottom: 2px solid #007bff;
+        }
+    
+        .custom-card-footer {
+            background-color: #e6f7ff; 
+            border-top: 2px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                    <span class="nav-item">Grocify</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>                </a></li>
+                <li><a href="">
+                    <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>   
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-categories">
+                <form action="{{ url_for('edit_category', category_id=category_id) }}" method="POST">
+                    <label for="product_name">Category Name:</label>
+                    <input type="text" id="category_name" name="category_name" value="{{category.Cat_name}}" required><br><br>
+                    
+                    <button type="submit">Save</button>
+                    <button type="button" id="close-popup">Cancel</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

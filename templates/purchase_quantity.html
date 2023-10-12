@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Purchasing - Grocify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+        .custom-card {
+            width: 200px;
+            text-align: center;
+            border: 3px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .custom-card-header,
+        .custom-card-footer {
+            background-color: #e6f7ff;
+            border: 2px solid #007bff;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .product-quantity {
+            width: 50px;
+        }
+
+        .checkout-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                    <span class="nav-item">Grocify</span>
+                </a></li>
+                
+                <li><a href="#">
+                    <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>                </a></li>
+                <a href="{{ url_for('user_profile') }}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>   
+                </a></li>
+                <li><a  href="{{ url_for('view_cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                <span class="nav-item">Cart</span>   
+                </a></li>
+                <li><a href="">
+                    <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>   
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-categories">
+                <h2>Select Products to Purchase</h2>
+                <form action="{{ url_for('add_to_cart', product_id=product.Product_ID) }}" method="POST">
+                    <div class="product-item">
+                        <label for="product_{{ product.id }}">{{ product.Product_Name }} ({{ product.Price }} per unit):</label>
+                        <input type="number" id="product_{{ product.id }}" name="product_{{ product.id }}" value="0" class="product-quantity" min="0" max="{{ product.Store_QTY }}" required>
+                    </div>
+                    <button type="submit" class="checkout-button">Proceed to Checkout</button>
+                    <a href="javascript:history.back()" class="checkout-button" style="background-color: white; color: black;">Cancel</a>
+                </form>
+                
+            </div>
+        </section>
+    </div>
+</body>
+</html>

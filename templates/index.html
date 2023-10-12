@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Grocify - Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            background-color: #ffffe0;
+            background-image: url('grocery_bag.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-attachment: fixed;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .index-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .index-box img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .index-box h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .index-box p {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .login-btn {
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .manager-btn {
+            background-color: #A29AC6;
+            color: #fff;
+        }
+
+        .customer-btn {
+            background-color: #75B4D0;
+            color: #fff;
+        }
+
+        
+        .login-btn::after {
+            content: "\25B6"; 
+            margin-left: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amazon+Ember&display=swap">
+</head>
+
+<body>
+    <div class="index-box">
+        <img src="{{ url_for('static', filename='logo.JPG') }}" alt="Your Logo"> 
+        <h1>Welcome to Grocify</h1>
+        <p>Your one-stop shop for all your grocery needs. Explore our wide range of products and shop at your convenience.</p>
+        <button class="login-btn manager-btn" onclick="location.href='/manager_login'">Manager Login</button>
+        <button class="login-btn customer-btn" onclick="location.href='/user_login'">Customer Login</button>
+    </div>
+</body>
+
+</html>

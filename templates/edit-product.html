@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ category_name }} - Grocify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+        .custom-card {
+            width: 200px;
+            text-align: center;
+            border: 3px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            margin-right: 20px;
+        }
+    
+        .custom-card-header {
+            background-color: #e6f7ff; 
+            border-bottom: 2px solid #007bff;
+        }
+    
+        .custom-card-footer {
+            background-color: #e6f7ff; 
+            border-top: 2px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                    <span class="nav-item">Grocify</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-user"></i>
+                <span class="nav-item">Profile</span>   
+                </a></li>
+                <li><a href="">
+                    <i class="fas fa-chart-bar"></i>
+                <span class="nav-item">Analytics</span>   
+                </a></li>
+                <li><a href="">
+                    <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>   
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-categories">
+                <form action="{{ url_for('edit_product', product_id=product_id) }}" method="POST" enctype="multipart/form-data">
+                    <label for="product_name">Product Name:</label>
+                    <input type="text" id="product_name" name="product_name" value="{{product.Product_Name}}" required><br><br>
+                    
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" value="{{ product.Price}}" required><br><br>
+                    
+                    <label for="per_rate">Rate per Unit:</label>
+                    <input type="text" id="per_rate" name="per_rate" value="{{product.per_rate}}" required><br><br>
+                    
+                    <label for="expiry_date">Expiry Date:</label>
+                    <input type="date" id="expiry_date" name="expiry_date" value="{{product.Expiry_Date}}" required><br><br>
+                    
+                    <label for="store_qty">Store Quantity:</label>
+                    <input type="number" id="store_qty" name="store_qty" value="{{product.Store_QTY}}" required><br><br>
+                    
+                    <label for="availability">Availability:</label>
+                    <select id="availability" name="availability">
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
+                    </select><br><br>
+                    
+                    <button type="submit">Save</button>
+                    <button type="button" id="close-popup">Cancel</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const addProductButton = document.getElementById('add-product-button');
+        const editProductButton = document.getElementById('edit-product-button');
+        const addProductPopup = document.getElementById('add-product-popup');
+        const editProductPopup = document.getElementById('edit-product-popup');
+        const closeAddCategoryPopupButton = document.getElementById('close-popup');
+        const exploreButtons = document.querySelectorAll('.explore-button');
+  
+        addProductButton.addEventListener('click', () => {
+            addProductPopup.style.display = 'block';
+        });
+  
+        closeAddCategoryPopupButton.addEventListener('click', () => {
+            addProductPopup.style.display = 'none';
+        });
+
+        editProductButton.addEventListener('click', () => {
+            editProductPopup.style.display = 'block';
+        });
+
+        closeAddCategoryPopupButton.addEventListener('click', () => {
+            editProductPopup.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

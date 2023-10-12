@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        .nav-item {
+            margin-left: 10px;
+        }
+        .result-item {
+            padding: 15px;
+            border: 1px solid #eaeaea;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input {
+            margin-right: 5px;
+        }
+        .logo img {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="#" class="navbar-brand logo">
+            <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+            <span class="nav-item">Grocify</span>
+        </a>
+        <form action="/search" method="get" class="search-form ml-auto">
+            <input type="text" class="form-control" name="query" placeholder="Search products or categories">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <ul class="navbar-nav ml-auto">
+                       <li class="nav-item">
+                <a href="{{ url_for('logout') }}" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container mt-4">
+        <h1>Search Results for "{{ query }}"</h1>
+
+        <h2>Products</h2>
+        {% for product, category_name in products %}
+            <div class="result-item">
+                <h4><a href="{{ url_for('purchase_quantity', category_id=product.Category_ID, product_id=product.Product_ID) }}">{{ product.Product_Name }}</a></h4>
+                <p>Price: {{ product.Price }}</p>
+                <p>Category: {{ category_name }}</p>
+            </div>
+        {% endfor %}
+
+        <h2>Categories</h2>
+        <ul class="list-group">
+            {% for category in categories %}
+                <li class="list-group-item"><a href="{{ url_for('category_products', category_id=category.Category_ID) }}">{{ category.Cat_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

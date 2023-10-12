@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="{{ url_for('manager_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('index') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Analytics Dashboard</h1>
+        
+        <h2>Most Sold Products</h2>
+        <img src="data:image/png;base64,{{ plot_data_most_sold }}" alt="Most Sold Products">
+
+        <h2>Best-Performing Categories</h2>
+        <img src="data:image/png;base64,{{ plot_data_best_categories }}" alt="Best-Performing Categories">
+    </div>
+</body>
+</html>

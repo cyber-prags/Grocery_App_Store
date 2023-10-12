@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Your Cart - Grocify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        body {
+            background: #f5f5f5;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .cart-container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .cart-summary {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn {
+            background: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#" class="logo">
+                        <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                        <span class="nav-item">Grocify</span>
+                    </a></li>
+                    <li>
+                        <form action="/search" method="get" class="search-form">
+                            <input type="text" name="query" placeholder="Search products or categories">
+                            <button type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+                    <li><a href="{{ url_for('user_dashboard') }}">
+                        <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>                </a></li>
+                    <li><a  href="{{ url_for('view_cart') }}">
+                        <i class="fas fa-shopping-cart"></i>
+                    <span class="nav-item">Cart</span>   
+                    </a></li>
+                    <li><a href="">
+                        <i class="fas fa-question-circle"></i>
+                    <span class="nav-item">Help</span>   
+                    </a></li>
+                    <li><a href="{{ url_for('logout') }}" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Logout</span> 
+                    </a></li>
+                </ul>
+            </nav>
+
+    <div class="cart-container">
+        {% for product in cart %}
+            <div class="cart-item">
+                <img src="{{ product.image }}" alt="{{ product.name }}"/>
+                <div class="product-details">
+                    <h4>{{ product.name }}</h4>
+                    <p>Price: Rs.{{ product.price }}</p>
+                </div>
+                <form method="post" action="/update_cart/{{product.id}}">
+                    <div class="product-quantity">
+                        <label for="quantity-{{ product.id }}">QTY:</label>
+                        <input type="number" id="quantity-{{ product.id }}" name="quantity" value="{{ product.qty }}" min="1" max="{{ product.store_qty }}">
+                    </div>
+                    <button class="btn btn-primary">Update</button>
+                </form>
+                <p>Total: Rs.{{ product.price * product.qty }}</p>
+            </div>
+        {% endfor %}
+        <div class="cart-summary">
+            <h3>Total Price: Rs.{{ total_price }}</h3>
+            <a href="{{ url_for('checkout') }}" class="checkout-btn">Checkout</a>
+        </div>
+    </div>
+</body>
+</html>

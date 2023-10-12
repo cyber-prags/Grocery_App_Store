@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+             
+        .category-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .category-box button {
+            margin-right: 3px;
+        }
+        .explore-button {
+            text-align: center;
+            width: 400px;
+            height: 50px;
+            font-size: 30px;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="overlay" id="overlay"></div>
+        <nav>
+          <ul>
+            <li><a href="#" class="logo">
+                <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                <span class="nav-item">Grocify</span>
+            </a></li>
+            <li>
+                <form action="/search" method="get" class="search-form">
+                    <input type="text" name="query" placeholder="Search products or categories">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </li>
+            
+            <li><a href="{{ url_for('manager_dashboard') }}">
+                <i class="fas fa-home"></i>
+            <span class="nav-item">Home</span>                </a></li>
+            <li><a href="{{ url_for('analytics') }}">
+                <i class="fas fa-chart-bar"></i>
+            <span class="nav-item">Analytics</span>   
+            </a></li>
+            <li><a href="{{ url_for('logout') }}" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Logout</span> 
+            </a></li>
+        </ul>
+        </nav>
+
+        <section class="main">
+          
+          <div class="main-categories">
+              <h1>Categories</h1>
+              <div class="category-boxes">
+                  {% for category in categories %}
+                  <div class="category-box" data-category-id="{{ category[0] }}">
+                    <p>{{ category.Cat_name }} (ID: {{ category.Category_ID}})</p>
+                    <a href="/edit-category/{{category.Category_ID}}">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="/delete-category/{{category.Category_ID}}">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                    <a href="{{ url_for('admin_category_products', category_id=category.Category_ID) }}">
+                        <button class="explore-button">See Products</button>
+                    </a>
+                </div>
+                  {% endfor %}
+              </div>
+              <div class="add-category-form" style="display: none;">
+                <h2>Add Category</h2>
+                <form action="{{ url_for('add_category') }}" method="POST">
+                    <label for="category_name">Category Name:</label>
+                    <input type="text" id="category_name" name="category_name" required><br><br>
+                    <label for="category_id">Category ID:</label>
+                    <input type="text" id="category_id" name="category_id" required><br><br>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+            <button class="add-category-button" id="add-category-button">+</button>
+            </div>
+            
+            <div class="add-category-form" style="display: none;">
+                <h2>Add Category</h2>
+                <form action="{{ url_for('add_category') }}" method="POST">
+                    <label for="category_name">Category Name:</label>
+                    <input type="text" id="category_name" name="category_name" required><br><br>
+                    <label for="category_id">Category ID:</label>
+                    <input type="number" id="category_id" name="category_id" required><br><br>
+                    <button type="submit">Save</button>
+                    <button type="button" id="close-popup">Cancel</button>
+                </form>
+            </div>
+            
+            <div class="add-category-popup" id="add-category-popup">
+                <div class="popup-content">
+                    <h2>Add Category</h2>
+                    <form action="{{ url_for('add_category') }}" method="POST">
+                        <label for="category_name">Category Name:</label>
+                        <input type="text" id="category_name" name="category_name" required><br><br>
+                        <label for="category_id">Category ID:</label>
+                        <input type="number" id="category_id" name="category_id" required><br><br>
+                        <button type="submit">Save</button>
+                        <button type="button" id="close-popup">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const categoryBox = button.closest('.category-box');
+                const categoryId = categoryBox.getAttribute('data-category-id');
+
+                fetch(`/delete_category/${categoryId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        const addCategoryButton = document.getElementById('add-category-button');
+        const addCategoryPopup = document.getElementById('add-category-popup');
+        const closeAddCategoryPopupButton = document.getElementById('close-popup');
+        const exploreButtons = document.querySelectorAll('.explore-button');
+  
+        addCategoryButton.addEventListener('click', () => {
+            addCategoryPopup.style.display = 'block';
+        });
+  
+        closeAddCategoryPopupButton.addEventListener('click', () => {
+            addCategoryPopup.style.display = 'none';
+        });
+  
+        exploreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const categoryId = button.getAttribute('data-category-id');
+                window.location.href = `/category/${categoryId}`;
+            });
+        });
+    </script>
+</body>
+</html>

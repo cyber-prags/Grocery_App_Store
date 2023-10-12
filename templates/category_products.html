@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ category_name }} - Grocify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>
+        .custom-card {
+            width: 200px;
+            text-align: center;
+            border: 3px solid #007bff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+    
+        .custom-card-header {
+            background-color: #e6f7ff; 
+            border-bottom: 2px solid #007bff;
+        }
+    
+        .custom-card-footer {
+            background-color: #e6f7ff; 
+            border-top: 2px solid #007bff;
+        }
+        .custom-purchase-btn {
+        background-color: orangered;
+        color: white; 
+        padding: 1px 3px; 
+        font-size: 14px; 
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        .custom-purchase-btn:hover {
+        background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='logo.JPG') }}" alt="">
+                    <span class="nav-item">Grocify</span>
+                </a></li>
+                <li>
+                    <form action="/search" method="get" class="search-form">
+                        <input type="text" name="query" placeholder="Search products or categories">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+                <li><a href="{{ url_for('user_dashboard') }}">
+                    <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>                </a></li>
+                <li><a href="{{ url_for('user_profile') }}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>   
+                </a></li>
+                <li><a  href="{{ url_for('view_cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                <span class="nav-item">Cart</span>   
+                </a></li>
+                <li><a href="">
+                    <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>   
+                </a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span> 
+                </a></li>
+            </ul>
+        </nav>
+
+        <section class="main">
+            <div class="main-categories">
+                {% for product in products %}  
+                <div class="card custom-card">
+                    <form action="" method="POST">
+                        <div class="card-header custom-card-header d-flex align-items-center">
+                            <h3 class="mb-0">{{ product.Product_Name }}</h3>
+                        </div>
+                        <div class="card-body bg-white">
+                            <p>Unit:-  <span class="font-weight-bold">{{ product.per_rate }}</span></p>
+                            <p>Quantity:- <span class="font-weight-bold">{{ product.Store_QTY }}</span></p>
+                            <p>Total Price:- Rs. <span class="font-weight-bold">{{ product.Price }}</span></p>
+                            <a href="{{ url_for('purchase_quantity', category_id=category.Category_ID, product_id=product.Product_ID) }}" class="custom-purchase-btn">Purchase</a>
+                        </div>
+                        <div class="card-footer custom-card-footer">
+                            <p class="mb-1">Category: <span class="font-weight-bold">{{ category.Cat_name }}</span></p>
+                            <p>Stock: <span class="font-weight-bold">{{ product.Stock }}</span></p>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <script>
+        // Calculate and update total price based on quantity
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceSpan = document.getElementById('total_price');
+
+        quantityInput.addEventListener('input', () => {
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const total = (pricePerUnit * quantity).toFixed(2);
+            totalPriceSpan.textContent = total;
+        });
+    </script>
+</body>
+</html>
