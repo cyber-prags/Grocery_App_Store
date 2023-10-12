@@ -8,8 +8,20 @@ Welcome to Grocify, your community-focused e-commerce grocery store committed to
 
 ## Project Overview
 
-At Grocify, we're all about enhancing the grocery shopping experience. We leverage the power of analytics to bring you personalized shopping journeys and targeted promotions. By understanding your preferences and behaviors, we continuously fine-tune our offerings and services to cater to your needs.
+The Online web-app Grocify is all about enhancing the grocery shopping experience. We leverage the power of analytics to bring you personalized shopping journeys and targeted promotions.
 
-Join us on this journey where we're using data-driven insights to redefine your grocery shopping experience. Explore our innovative approach to connecting you with quality products through a few simple clicks.
+## Technologies Used
 
-Grocify - Your Gateway to Fresh, Convenient, and Personalized Grocery Shopping.
+- **Flask**: The backbone of our application, handling routing and server-side logic to provide a seamless user experience.
+
+- **Flask-Sqlalchemy**: An extension that simplifies database interactions through Object-Relational Mapping (ORM), making data management intuitive and efficient.
+
+- **Flask-login**: Enhancing our application's security with secure authentication, enabling essential features like sign-up and login.
+
+- **Matplotlib**: Empowering our managers with interactive data visualization, enabling data-driven decision-making and insightful analytics.
+
+- **Bootstrap**: Responsible for the appealing and responsive design of our platform, ensuring a user-friendly and visually appealing interface.
+
+- **Datetime**: A fundamental component for managing date and time data types, especially critical for handling product expiry dates and ensuring timely deliveries.
+
+
