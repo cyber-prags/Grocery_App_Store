@@ -25,3 +25,20 @@ The Online web-app Grocify is all about enhancing the grocery shopping experienc
 - **Datetime**: A fundamental component for managing date and time data types, especially critical for handling product expiry dates and ensuring timely deliveries.
 
 
+## Database Schema: 
+
+![app_images](https://github.com/cyber-prags/Movie_Review_Prediction/assets/74003758/3b8045b2-0945-4962-9408-9f40d09085e4)
+
+## Database Structure
+
+Grocify's database is organized into five interconnected tables, each serving a specific purpose:
+
+- **Managers**: This table stores essential information about store managers, including a unique Manager_ID, Name, Username, Email, and Password. Managers possess the authority to manage categories and products, enabling them to add, edit, or delete entries.
+
+- **Customers**: The Customers table contains customer profiles, with each entry featuring a unique Customer_ID, Name, Username, Email, and Password. It forms the foundation of our user accounts.
+
+- **Categories**: In this table, we maintain information about various product categories. Each category is identified by a unique Category_ID and comes with a Category Name (Cat_name). The Category Manager_ID is linked as a foreign key, ensuring that only authorized managers can make modifications.
+
+- **Products**: This table provides a comprehensive overview of our store's inventory. It includes Product_ID, Product_Name, Price, per_rate, Expiry_Date, Store_QTY, Picture, Availability, and Category_ID. These details allow us to efficiently manage our product listings.
+
+- **Purchases**: The Purchases table tracks customer transactions, documenting crucial details such as Purchase_ID, Customer_ID, Category_ID, Product_ID, Quantity, and Total Price. It is the core of our order management system, facilitating the smooth processing of customer purchases.
