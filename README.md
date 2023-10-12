@@ -47,15 +47,15 @@ Grocify's database is organized into five interconnected tables, each serving a 
 
 Grocify's architecture is thoughtfully organized into folders and files, ensuring a structured and efficient development environment:
 
-- `**Templates Folder**`: This directory is dedicated to housing all HTML files responsible for the view layer, providing the visual components of our web application.
+- `Templates Folder`: This directory is dedicated to housing all HTML files responsible for the view layer, providing the visual components of our web application.
 
-- `**Static Folder**`: Here, you'll find all the CSS and image files used to enhance the aesthetics and user interface of the platform, ensuring a visually pleasing and responsive design.
+- `Static Folder`: Here, you'll find all the CSS and image files used to enhance the aesthetics and user interface of the platform, ensuring a visually pleasing and responsive design.
 
-- `**models.py**`: This Python script defines the database models that underpin our application, outlining the structure and relationships within the database.
+- `models.py`: This Python script defines the database models that underpin our application, outlining the structure and relationships within the database.
 
-- `**Grocery_store.sqlite3**`: The database file where all the tables, customer profiles, product information, and order data are stored, ensuring efficient data management.
+- `Grocery_store.sqlite3`: The database file where all the tables, customer profiles, product information, and order data are stored, ensuring efficient data management.
 
-- `**app.py**`: The central hub of our application, app.py manages all routes and functions necessary to run the web application, serving as the core logic and functionality provider.
+- `app.py`: The central hub of our application, app.py manages all routes and functions necessary to run the web application, serving as the core logic and functionality provider.
 
 ### Key Features
 
