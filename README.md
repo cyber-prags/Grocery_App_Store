@@ -42,3 +42,31 @@ Grocify's database is organized into five interconnected tables, each serving a 
 - **Products**: This table provides a comprehensive overview of our store's inventory. It includes Product_ID, Product_Name, Price, per_rate, Expiry_Date, Store_QTY, Picture, Availability, and Category_ID. These details allow us to efficiently manage our product listings.
 
 - **Purchases**: The Purchases table tracks customer transactions, documenting crucial details such as Purchase_ID, Customer_ID, Category_ID, Product_ID, Quantity, and Total Price. It is the core of our order management system, facilitating the smooth processing of customer purchases.
+
+## Architecture and Features
+
+Grocify's architecture is thoughtfully organized into folders and files, ensuring a structured and efficient development environment:
+
+- `**Templates Folder**`: This directory is dedicated to housing all HTML files responsible for the view layer, providing the visual components of our web application.
+
+- `**Static Folder**`: Here, you'll find all the CSS and image files used to enhance the aesthetics and user interface of the platform, ensuring a visually pleasing and responsive design.
+
+- `**models.py**`: This Python script defines the database models that underpin our application, outlining the structure and relationships within the database.
+
+- `**Grocery_store.sqlite3**`: The database file where all the tables, customer profiles, product information, and order data are stored, ensuring efficient data management.
+
+- `**app.py**`: The central hub of our application, app.py manages all routes and functions necessary to run the web application, serving as the core logic and functionality provider.
+
+### Key Features
+
+Grocify is designed to offer a range of features to both managers/admins and customers, ensuring a seamless and personalized grocery shopping experience:
+
+- **CRUD Operations**: The application supports Create, Read, Update, and Delete (CRUD) operations for managers. This empowers them to have complete control over categories and products, allowing for the addition, modification, and removal of items from the inventory.
+
+- **Customer Cart**: Customers can conveniently add items to their cart, facilitating a straightforward shopping experience. They can effortlessly manage their orders, providing a hassle-free path to purchase.
+
+- **Personalized Shopping**: Grocify leverages analytics to offer a personalized shopping experience. Based on previous purchases, the platform can suggest products to customers, making their shopping journeys more tailored to their preferences.
+
+- **Data Visualization**: Integration of visualizations enhances the manager's experience by providing insights into sales trends and customer behavior. These visualizations offer valuable data-driven decision-making support, ensuring the business stays on track and adapts to changing needs.
+
+Grocify is more than an online grocery store; it's a platform that combines convenience, personalization, and data-driven insights to redefine the grocery shopping experience. Explore our architecture, experience our features, and embark on a journey of seamless and insightful grocery shopping.
