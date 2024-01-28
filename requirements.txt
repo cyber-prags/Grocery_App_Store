@@ -11,3 +11,4 @@ matplotlib==3.4.3
 SQLAlchemy==2.0.19
 typing_extensions==4.7.1
 Werkzeug==2.3.6
+gunicorn==20.0.4
