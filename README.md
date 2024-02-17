@@ -6,6 +6,8 @@
 
 Welcome to Grocify, your community-focused e-commerce grocery store committed to delivering the freshest groceries directly to your doorstep. Our platform is designed to offer the best of both worlds, combining the convenience of online shopping with the quality and personal touch of traditional grocery stores.
 
+Live Project Link: https://grocify-app.onrender.com/
+
 ## Project Overview
 
 The Online web-app Grocify is all about enhancing the grocery shopping experience. We leverage the power of analytics to bring you personalized shopping journeys and targeted promotions.
